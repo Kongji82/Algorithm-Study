@@ -1,6 +1,6 @@
 N = int(input())
 
-binary = [0] * N
+binary = [0] * (N+1)
 binary[0] = 1
 binary[1] = 1
 
