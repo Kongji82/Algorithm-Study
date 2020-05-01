@@ -1,13 +1,17 @@
-N = int(input())
-grape = [0 for i in range(10001)]
-dp = [0 for i in range(10001)]
-for i in range(N):
-    grape[i] = int(input())
+n = int(input())
+wine = [int(input()) for x in range(n)]
 
-dp[0] = grape[0]
-dp[1] = grape[0] + grape[1]
-dp[2] = max(grape[1] + grape[2] , grape[0] + grape[2])
-for i in range(3, N):
-    dp[i] = max(dp[i-2] + grape[i], dp[i-3] + grape[i-1] + grape[i])
+dp = [0]
+dp.append(wine[0])
+if n > 1:
+    dp.append(wine[0] + wine[1])
     
-print(max(dp))
+for i in range(3, n+1):
+    case_1 = wine[i-1] + dp[i-2]
+    case_2 = wine[i-1] + wine[i-2] + dp[i-3]
+    case_3 = dp[i-1]
+    value = max(case_1, case_2, case_3)
+    
+    dp.append(value)
+    
+print(dp[n])
